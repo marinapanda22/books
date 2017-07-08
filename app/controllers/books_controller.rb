@@ -1,11 +1,12 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /books
   # GET /books.json
   def index
     @categories = Category.all
-    @books = Book.order(created_at: :desc)
+    @books = Book.order(created_at: :desc).page params[:page]
   end
 
   # GET /books/1
