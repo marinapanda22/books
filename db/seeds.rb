@@ -7,22 +7,22 @@ user.save
 dir = Rails.root + 'app' + 'assets' + 'images'
 
 10.times do
-  Book.create(title:Faker::HarryPotter.location, desc: Faker::Lorem.paragraph, image:File.new(dir + "1.jpg"),
+  Book.create(title:Faker::HarryPotter.location,active: true, desc: Faker::Lorem.paragraph, image:File.new(dir + "1.jpg"),
               user_id: 1
   )
 end
 10.times do
-  Book.create(title:Faker::HarryPotter.location, desc: Faker::Lorem.paragraph, image:File.new(dir + "2.jpg"),
+  Book.create(title:Faker::HarryPotter.location, active: true, desc: Faker::Lorem.paragraph, image:File.new(dir + "2.jpg"),
               user_id: 1
   )
 end
 10.times do
-  Book.create(title:Faker::HarryPotter.location, desc: Faker::Lorem.paragraph, image:File.new(dir + "3.jpg"),
+  Book.create(title:Faker::HarryPotter.location, active: true, desc: Faker::Lorem.paragraph, image:File.new(dir + "3.jpg"),
               user_id: 2
   )
 end
 10.times do
-  Book.create(title:Faker::HarryPotter.location, desc: Faker::Lorem.paragraph, image:File.new(dir + "4.jpg"),
+  Book.create(title:Faker::HarryPotter.location, active: true, desc: Faker::Lorem.paragraph, image:File.new(dir + "4.jpg"),
               user_id: 2
   )
 end

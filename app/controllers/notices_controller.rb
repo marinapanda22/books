@@ -1,5 +1,6 @@
 class NoticesController < ApplicationController
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /notices
   # GET /notices.json
@@ -28,8 +29,7 @@ class NoticesController < ApplicationController
 
     respond_to do |format|
       if @notice.save
-        format.html { redirect_to @notice, notice: 'Notice was successfully created.' }
-        format.json { render :show, status: :created, location: @notice }
+        format.html { redirect_to :back, notice: 'Коммент создан' }
       else
         format.html { render :new }
         format.json { render json: @notice.errors, status: :unprocessable_entity }
@@ -62,13 +62,13 @@ class NoticesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_notice
-      @notice = Notice.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_notice
+    @notice = Notice.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def notice_params
-      params.require(:notice).permit(:body, :rating)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def notice_params
+    params.require(:notice).permit(:body, :book_id, :rating, :user_id)
+  end
 end

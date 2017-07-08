@@ -4,12 +4,14 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = Book.order(created_at: :desc)
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
+    @notice = Notice.new
+    @book = Book.find(params[:id])
   end
 
   # GET /books/new
@@ -25,10 +27,11 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+    @book.user_id = current_user.id
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to :back, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }

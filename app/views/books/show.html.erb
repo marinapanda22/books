@@ -1,19 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+<h2><%= @book.title %></h2>
+<%= image_tag @book.image %>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @book.desc %>
-</p>
+<div id ="comment-section">
+  <ol id="comments">
+    <% @book.notices.each do |notice|%>
+        <%= notice.body %>
+        <%= notice.rating %>
+        <br>
+    <% end %>
+  </ol>
+  <p>
+    <span>Средняя оценка: <%= Notice.where(:book => @book).average("rating") %></span>
+  </p>
 
-<p>
-  <strong>Active:</strong>
-  <%= @book.active %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+  <h4>Добавить комментарий:</h4>
+  <%= form_for [@book, @book.notices.new] do |f| %>
+      <%= f.text_field :body, placeholder: 'Add a notice...' %>
+      <%= f.hidden_field :book_id, value: @book.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.select(:rating, options_for_select(1..5)) %>
+  <% end %>
+</div>
