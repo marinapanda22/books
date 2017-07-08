@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   paginates_per 20
   belongs_to :user
-  belongs_to :categories
+  belongs_to :categories, :optional => true
   has_many :notices, dependent: :destroy
   mount_uploader :image, ImageUploader
 end
