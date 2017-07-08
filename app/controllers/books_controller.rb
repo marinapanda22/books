@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
+    @categories = Category.all
     @books = Book.order(created_at: :desc)
   end
 

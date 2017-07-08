@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
+<h3><%= @category.title %></h3>
+<% @category.books.each do |book|%>
+    <%= book.title %>
+    <div class="img"><%= link_to image_tag(book.image.large), book_path(book) %></div>
+    <%= book.user.name %>
+<% end %>
+
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>

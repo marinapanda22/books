@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :user
-  has_many :categories, dependent: :destroy
+  belongs_to :categories
   has_many :notices, dependent: :destroy
   mount_uploader :image, ImageUploader
 end
