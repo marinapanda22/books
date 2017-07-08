@@ -13,6 +13,7 @@
 
         <% if signed_in? %>
                 <li><%= link_to "Создать новую книгу", new_book_path %></li>
+                <li><%= link_to "Создать нового автора", new_writer_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
 
