@@ -5,4 +5,7 @@ class Book < ApplicationRecord
   belongs_to :categories, :optional => true
   has_many :notices, dependent: :destroy
   mount_uploader :image, ImageUploader
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
+  end
 end

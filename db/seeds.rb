@@ -8,27 +8,32 @@ drama_category = Category.create(title: 'Drama')
 new_category = Category.create(title: 'New')
 horror_category = Category.create(title: 'Horror')
 adventure_category = Category.create(title: 'Adventure')
-nature_category = Category.create(title: 'Nature')
 
+5.times do
+  Writer.create(name:Faker::Name.name)
+end
 dir = Rails.root + 'app' + 'assets' + 'images'
 
 10.times do
   Book.create(title:Faker::HarryPotter.location,active: true, category_id: 1, desc: Faker::Lorem.paragraph, image:File.new(dir + "1.jpg"),
-              user_id: 1
+              user_id: 1, writer_id: 1
   )
 end
 10.times do
   Book.create(title:Faker::HarryPotter.location, active: true, category_id: 2, desc: Faker::Lorem.paragraph, image:File.new(dir + "2.jpg"),
-              user_id: 1
+              user_id: 1, writer_id: 2
   )
+
 end
 10.times do
   Book.create(title:Faker::HarryPotter.location, active: true, category_id: 3, desc: Faker::Lorem.paragraph, image:File.new(dir + "3.jpg"),
-              user_id: 2
+              user_id: 2, writer_id: 3
   )
+
 end
 10.times do
   Book.create(title:Faker::HarryPotter.location, active: true, category_id: 4, desc: Faker::Lorem.paragraph, image:File.new(dir + "4.jpg"),
-              user_id: 2
+              user_id: 2, writer_id: 4
   )
+
 end

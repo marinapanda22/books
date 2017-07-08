@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708131545) do
+ActiveRecord::Schema.define(version: 20170708133107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 20170708131545) do
     t.integer  "category_id"
     t.string   "image"
     t.integer  "user_id"
+    t.integer  "writer_id"
     t.index ["category_id"], name: "index_books_on_category_id", using: :btree
     t.index ["user_id"], name: "index_books_on_user_id", using: :btree
+    t.index ["writer_id"], name: "index_books_on_writer_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -87,6 +89,7 @@ ActiveRecord::Schema.define(version: 20170708131545) do
 
   add_foreign_key "books", "categories"
   add_foreign_key "books", "users"
+  add_foreign_key "books", "writers"
   add_foreign_key "notices", "books"
   add_foreign_key "notices", "users"
 end

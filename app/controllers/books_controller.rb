@@ -7,6 +7,11 @@ class BooksController < ApplicationController
   def index
     @categories = Category.all
     @books = Book.order(created_at: :desc).page params[:page]
+    if params[:search]
+      @books = Book.search(params[:search]).order("created_at DESC").page params[:page]
+    else
+      @books = Book.all.order('created_at DESC').page params[:page]
+    end
   end
 
   # GET /books/1
@@ -74,6 +79,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :desc, :active, :image, :user_id, :category_id)
+      params.require(:book).permit(:title, :desc, :active, :image, :user_id, :category_id, :writer_id)
     end
 end
